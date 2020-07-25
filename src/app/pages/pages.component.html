@@ -1,1 +1,28 @@
-<p>pages works!</p>
+<div class="r-container">
+    <mat-toolbar color="primary">
+        <button mat-icon-button (click)="snav.toggle()"><mat-icon>menu</mat-icon></button>
+        <h1 class="app-name">Banco UPDS</h1>
+    </mat-toolbar>
+
+    <mat-sidenav-container class="sidenav-container">
+        <mat-sidenav #snav>
+            <mat-nav-list>
+                <mat-list>
+                    <a *ngFor="let nav of navs" [routerLink]="[nav.url]">
+                        <mat-list-item routerLinkActive="active-link" (click)="snav.toggle()">
+                            <mat-icon matListIcon>{{nav.icon}}</mat-icon>
+                            <h3 matLine> {{nav.title}} </h3>
+                        </mat-list-item>
+                    </a>
+                </mat-list>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <div class="container my-5">
+                <router-outlet></router-outlet>
+            </div>
+            <!-- <app-footer></app-footer> -->
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

@@ -1,0 +1,23 @@
+<mat-toolbar color="primary" class="animate__animated animate__fadeIn">
+
+    <mat-toolbar-row>
+        <span [routerLink]="['']" class="enlace">
+            Banco UPDS
+        </span>
+        <span class="spacer"></span>
+
+        <button mat-button [matMenuTriggerFor]="beforeMenu" class="button o-a">
+            <!-- <mat-icon class="icon">person</mat-icon> -->
+            {{email}}
+        </button>
+        <mat-menu #beforeMenu="matMenu" xPosition="before">
+            <button mat-menu-item [routerLink]="['/my-curses']">Mis transacciones</button>
+            <button mat-menu-item (click)="logout()">Cerrar Sesion</button>
+        </mat-menu>
+
+
+        <!-- <mat-icon class="icon button" aria-hidden="false" aria-label="Example user verified icon">verified_user</mat-icon> -->
+        <!-- <button mat-button (click)="logout()">Cerrar sesion</button> -->
+    </mat-toolbar-row>
+
+</mat-toolbar>

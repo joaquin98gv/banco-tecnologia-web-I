@@ -1,0 +1,75 @@
+<div class="row" *ngIf="!cargandoData">
+    <div class="col-12">
+        <h1 class="text-center font-weight-bold">{{cliente.NombreCompleto}}</h1>
+    </div>
+
+    <div class="col-12" *ngIf="cliente.IdCuenta != null">
+        <div class="col-12">
+            <h4 class="text-muted text-center my-3">Numero de cuenta: {{ cliente.IdCuenta }}</h4>
+            <h1 class="font-weight-bold text-center">Bs. {{ cliente.Monto }}</h1>
+            <!-- <p>{{ calcIngresos() }}</p> -->
+        </div>
+        <div class="col-12 my-3">
+            <h4 class="text-muted">Ingreso total: {{ cantIngreso }} bs.</h4>
+            <mat-progress-bar class="example-margin" [color]="'primary'" [value]="porIngreso"></mat-progress-bar>
+        </div>
+        <div class="col-12 my-3">
+            <h4 class="text-muted">Egreso total: {{ cantEgreso }} bs.</h4>
+            <mat-progress-bar class="example-margin" [color]="'primary'" [value]="porEgreso"></mat-progress-bar>
+        </div>
+        <mat-divider class="my-5"></mat-divider>
+        <h2 class="text-center">Transacciones</h2>
+        <div class="col-12">
+            <mat-tab-group mat-align-tabs="center">
+                <mat-tab label="Todas">
+                    <mat-list role="list">
+                        <mat-list-item role="listitem" *ngFor="let x of transacciones">
+                            <h3 matLine class="font-weight-bold"> {{ x.TipoTransaccion }} </h3>
+                            <p matLine>
+                                <span> {{ x.FechaRegistro | date }} </span>
+                            </p>
+                            <span class="spacer"></span>
+                            <h4 *ngIf="x.IdTipoTransaccion == 1" class="text-success">
+                                + {{ x.Monto }} bs.
+                            </h4>
+                            <h4 *ngIf="x.IdTipoTransaccion == 2" class="text-danger">
+                                - {{ x.Monto }} bs.
+                            </h4>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-tab>
+                <mat-tab label="Ingreso">
+                    <mat-list role="list">
+                        <mat-list-item role="listitem" *ngFor="let x of transacciones | tipoTransaccion: 1">
+                            <h3 matLine class="font-weight-bold"> {{ x.TipoTransaccion }} </h3>
+                            <p matLine>
+                                <span> {{ x.FechaRegistro | date }} </span>
+                            </p>
+                            <span class="spacer"></span>
+                            <h4 class="text-success">
+                                + {{ x.Monto }} bs.
+                            </h4>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-tab>
+                <mat-tab label="Egreso">
+                    <mat-list role="list">
+                        <mat-list-item role="listitem" *ngFor="let x of transacciones | tipoTransaccion: 2">
+                            <h3 matLine class="font-weight-bold"> {{ x.TipoTransaccion }} </h3>
+                            <p matLine>
+                                <span> {{ x.FechaRegistro | date }} </span>
+                            </p>
+                            <span class="spacer"></span>
+                            <h4 class="text-danger">
+                                - {{ x.Monto }} bs.
+                            </h4>
+                        </mat-list-item>
+                    </mat-list>
+                </mat-tab>
+            </mat-tab-group>
+        </div>
+    </div>
+    <div class="col-12 text-center" *ngIf="cliente.IdCuenta == null">
+        <button mat-raised-button (click)="crearCuenta()">Crear cuenta/billetera</button>
+    </div>
+</div>

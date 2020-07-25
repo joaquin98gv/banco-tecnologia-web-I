@@ -1,1 +1,44 @@
-<p>login works!</p>
+<section id="wrapper" class="login-register login-sidebar animate__animated animate__fadeIn" style="background-image:url(assets/images/background/login-register.jpg);">
+    <div class="row">
+        <div class="col-md-4 card overflow-auto">
+            <div class="card-body">
+                <div class="text-center mb-3">
+                    <a href="javascript:void(0)">
+                        <img src="assets/images/isologo-azul-upds.png" width="120px" alt="Logo UPDS" />
+                    </a>
+                </div>
+                <p class="text-center mat-h1 mb-3">Banco UPDS</p>
+                <p class="text-center mat-h2 mb-3">Inicio de Sesion</p>
+                <form class="form" [formGroup]="form" (ngSubmit)="save()">
+                    <mat-form-field class="full-width">
+                        <mat-label>Correo electronico</mat-label>
+                        <input type="text" matInput placeholder="Ej. j***@upds.net.bo" formControlName="Email" name="email">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Documento de identidad</mat-label>
+                        <input matInput type="password" placeholder="Ej. 10*****8" formControlName="Pass" name="pass">
+                    </mat-form-field>
+                    <div class="text-center row mt-3">
+                        <div class="col-md-2 col-sx-0"></div>
+                        <div class="col-md-8 col-sx-12">
+                            <button class="full-width" mat-raised-button color="primary">Iniciar sesión</button>
+                        </div>
+                        <div class="col-md-2 col-sx-0"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
+                            <div class="social">
+                                <a href="javascript:void(0)" class="btn btn-googleplus" data-toggle="tooltip" title="Login with Google"> <i aria-hidden="true" class="fa fa-google-plus"></i> </a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="col-md-8"></div>
+    </div>
+    <!-- <div class="login-box card">
+        
+    </div> -->
+</section>

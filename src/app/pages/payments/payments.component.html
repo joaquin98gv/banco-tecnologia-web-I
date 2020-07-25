@@ -1,0 +1,50 @@
+<div class="row">
+
+    <div class="col-md-12 my-5">
+        <div class="card">
+            <div class="card-body text-center">
+                <form autocomplete="off" [formGroup]="formulario" (ngSubmit)="guardar()" *ngIf="!cargandoData">
+                    <h2>Realizar transferencia</h2>
+                    <mat-divider class="mt-2 mb-5"></mat-divider>
+
+                    <div class="col-md-12">
+                        <mat-form-field class="full-width">
+                            <mat-label>Detalle</mat-label>
+                            <input matInput placeholder="Ex. Capacitacion de vent..." formControlName="Descripcion">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width">
+                                <mat-label>Destinatario</mat-label>
+                                <mat-select formControlName="IdDestino">
+                                    <mat-option *ngFor="let x of lDestinatario" [value]="x.IdCuenta">
+                                        {{x.NombreCompleto}} (Cuenta: {{ x.IdCuenta }})
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+
+                        <div class="col-md-6">
+                            <mat-form-field class="full-width">
+                                <mat-label>Monto</mat-label>
+                                <input matInput type="number" formControlName="Monto">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+
+                    <button mat-raised-button color="primary">Iniciar proceso</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<p *ngIf="!cargandoData">
+    {{ formulario.valid }}
+</p>
+<pre *ngIf="!cargandoData">
+    {{ formulario.value | json }}
+</pre>
